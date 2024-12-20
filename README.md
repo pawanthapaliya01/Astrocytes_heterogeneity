@@ -1,4 +1,4 @@
-Astrocyte Heterogeneity in Neuronal Activity-Evoked Sodium and Bioenergetics
+**Astrocyte Heterogeneity in Neuronal Activity-Evoked Sodium and Bioenergetics**
 
 Emerging evidence suggests that changes in sodium concentration (Naa) in astrocytes represent a unique form of excitability, tightly linked to ion dynamics, bioenergetics, neurotransmitter uptake, and neurovascular coupling. Our research reveals significant regional differences in Naa transients, with neocortical astrocytes exhibiting larger Naa amplitudes compared to hippocampal astrocytes.
 
