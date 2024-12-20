@@ -6,3 +6,6 @@ To explore this heterogeneity, we've developed a detailed biophysical model that
 
 This work provides deeper insights into astrocyte function and bioenergetics, with implications for understanding metabolic stress in the brain. Please use the following link to read the full paper
 **https://www.frontiersin.org/journals/cellular-neuroscience/articles/10.3389/fncel.2023.1035553/full**
+
+
+![image](https://github.com/user-attachments/assets/886b2579-b0bd-42f8-a136-93f5bee3d553)
