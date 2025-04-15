@@ -1,0 +1,99 @@
+function F=myODE_bak(b)
+
+format long
+%close all
+
+%load trace3.csv
+load rrampa.csv
+%data1=trace3(10:end,:);
+data1=rrampa(2:end,:);
+time1 = data1(:,1);
+data = abs(data1(:,2));%/max(abs(data1(:,2)));
+% ta0pamp=table(time1,data);
+% writetable(ta0pamp)
+% data2=data;
+% for z=1:size(data)
+%     if data2(z,1)>0.1199
+%         data2(z,1)=0.1199;
+%     end
+% end
+% data2=data2/0.1199;
+% t0samp=table(time1,data2);
+% writetable(t0samp)
+
+t0=[0:0.01:3];
+y0=[0; 0; 0; 0];
+[t,y] = ode15s(@(t,y)dydt(t,y,b),t0,y0);
+
+y1 = y(:,3);
+%taamp=table(t,y1);
+%writetable(taamp)
+%peak
+ %y1=y1/max(y1);
+% tapamp=table(t,y1);
+% writetable(tapamp)
+%steady state
+% for i= 1:size(y1)
+%     if y1(i,1)>0.1126
+%         y1(i,1)=0.1126;
+%     end
+% end
+% y1=y1/0.1126;
+% tas=table(t,y1);
+% writetable(tas)
+s=length(data);
+d=zeros(1,s);
+ix=zeros(1,s);
+for i=1:s
+    [ d(i), ix(i) ] = min( abs( t-time1(i) ) );
+end
+%simtime = t(ix);
+sim=y1(ix);
+F=sum((data-sim).^2)/s;     
+hold on
+plot(time1,data,'s','MarkerSize',5','MarkerEdgeColor','r','LineWidth', 2)
+plot(t,y1,'-b','LineWidth', 2)
+
+
+ 
+function dy = dydt(t,y,b)
+format long
+
+C2 = y(1);
+
+C3 = y(2);
+O = y(3);
+D = y(4);
+
+C1 = 1-C2-C3-O-D;
+
+kon = b(1);    %49.98 uM/sec
+koff = b(2);   %161.73 1/sec 
+beta = b(3);   %800 1/sec
+alpha = b(4);  %31.95  1/sec 
+kd = b(5);     %85 1/sec
+kr = b(6);     %3.53 1/sec
+
+if t >= 0.0 && t < 2.0
+    %glu = 100.0; %b(2); for Cai_trace3
+    glu=1000.0;
+else
+    glu = 0.0;
+end 
+
+kc1c2 = 2*glu*kon;
+kc2c1 = koff;
+kc2c3 = glu*kon;
+kc3c2 = 2*koff;
+kc3o  = beta;
+koc3  = alpha;
+kc3d  = kd;
+kdc3  = kr;
+
+dydt1 = kc1c2*C1+kc3c2*C3-(kc2c1+kc2c3)*C2;    %C2
+dydt2 = kc2c3*C2+koc3*O-(kc3c2+kc3o)*C3;       %C3
+dydt3 = kc3o*C3-koc3*O;                        %O
+dydt4 = kc3d*C3-kdc3*D;                        %D
+
+dy=[dydt1;dydt2;dydt3;dydt4];
+
