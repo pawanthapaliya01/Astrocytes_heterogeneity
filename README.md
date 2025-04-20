@@ -48,3 +48,26 @@ gfortran -O2 -o astro_sim Astrocyte_NMDA_heterogeneity.f90
 
 # Run
 ./astro_sim
+
+
+
+Example Python Plotting (Optional) matlabversion code is available above
+
+If the simulation outputs a .dat file (e.g., results.dat), you can visualize it using Python:
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Load .dat file (assumes two columns: time and response)
+data = np.loadtxt('results.dat')  # replace with your actual .dat file name
+
+time = data[:, 0]
+response = data[:, 1]
+
+plt.plot(time, response, color='blue', linewidth=2)
+plt.xlabel('Time (s)')
+plt.ylabel('Response')
+plt.title('Astrocyte NMDA Response')
+plt.grid(True)
+plt.tight_layout()
+plt.show()
