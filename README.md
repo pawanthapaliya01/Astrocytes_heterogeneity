@@ -9,3 +9,42 @@ This work provides deeper insights into astrocyte function and bioenergetics, wi
 
 
 ![image](https://github.com/user-attachments/assets/886b2579-b0bd-42f8-a136-93f5bee3d553)
+
+
+
+# Astrocyte NMDA Heterogeneity Simulation
+
+This Fortran program simulates the heterogeneity of NMDA receptor responses in astrocytes under different physiological or pathological conditions.
+
+## File
+- `Astrocyte_NMDA_heterogeneity.f90` — Main simulation code written in Fortran 90.
+
+## Requirements
+
+### Option 1: Intel Fortran Compiler
+- Intel oneAPI or Intel Parallel Studio (includes `ifort`)
+
+### Option 2: GNU Fortran Compiler
+- `gfortran` (version 9+ recommended)
+
+### Optional (for plotting or data analysis)
+- Python with `numpy`, `matplotlib`, etc.
+
+---
+
+## Compilation & Execution
+
+### Using Intel Fortran (`ifort`)
+
+```bash
+# Compile
+ifort -O2 -o astro_sim Astrocyte_NMDA_heterogeneity.f90
+
+# Run
+./astro_sim
+
+# Compile
+gfortran -O2 -o astro_sim Astrocyte_NMDA_heterogeneity.f90
+
+# Run
+./astro_sim
